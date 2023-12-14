@@ -1,0 +1,190 @@
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  creationTimestamp: null
+  name: numberconversion
+spec:
+  CORS:
+    allow_credentials: false
+    debug: false
+    enable: false
+    options_passthrough: false
+  active: true
+  auth:
+    auth_header_name: ""
+    cookie_name: ""
+    param_name: ""
+    signature:
+      algorithm: ""
+      allowed_clock_skew: 0
+      error_code: 0
+      error_message: ""
+      header: ""
+      secret: ""
+    use_certificate: false
+    use_cookie: false
+    use_param: false
+    validate_signature: false
+  cache_options:
+    cache_all_safe_requests: false
+    cache_control_ttl_header: ""
+    cache_timeout: 60
+    enable_cache: false
+    enable_upstream_cache_control: false
+  config_data:
+    k8sName: numberconversion
+  custom_middleware:
+    auth_check:
+      name: ""
+      path: ""
+      raw_body_only: false
+      require_session: false
+    driver: ""
+    id_extractor:
+      extract_from: ""
+      extract_with: ""
+      extractor_config: {}
+  custom_middleware_bundle: ""
+  definition:
+    key: version
+    location: header
+    strip_path: false
+  disable_quota: false
+  disable_rate_limit: false
+  do_not_track: false
+  domain: ""
+  enable_context_vars: false
+  enable_coprocess_auth: false
+  enable_detailed_recording: false
+  enable_ip_blacklisting: false
+  enable_ip_whitelisting: false
+  enable_jwt: false
+  enable_proxy_protocol: false
+  global_rate_limit:
+    per: 0
+    rate: 0
+  graphql:
+    enabled: false
+    engine:
+      data_sources: []
+      field_configs: []
+    execution_mode: ""
+    playground:
+      enabled: false
+      path: ""
+    proxy:
+      auth_headers: {}
+    schema: ""
+    subgraph:
+      sdl: ""
+    supergraph:
+      disable_query_batching: false
+      merged_sdl: ""
+  id: 6579e1c7e4960d00016d9830
+  internal: false
+  jwt_client_base_field: ""
+  jwt_identity_base_field: ""
+  jwt_policy_field_name: ""
+  jwt_scope_claim_name: ""
+  jwt_signing_method: ""
+  jwt_skip_kid: false
+  jwt_source: ""
+  listen_port: 0
+  name: NumberConversion
+  oauth_meta:
+    allowed_access_types: []
+    allowed_authorize_types: []
+    auth_login_redirect: ""
+  org_id: 657017b62ccb2000018eb448
+  protocol: ""
+  proxy:
+    check_host_against_uptime_tests: false
+    disable_strip_slash: true
+    enable_load_balancing: false
+    listen_path: /NumberConversion/
+    preserve_host_header: false
+    service_discovery:
+      cache_timeout: 0
+      data_path: ""
+      endpoint_returns_list: false
+      parent_data_path: ""
+      port_data_path: ""
+      query_endpoint: ""
+      target_path: ""
+      use_discovery_service: false
+      use_nested_query: false
+      use_target_list: false
+    strip_listen_path: true
+    target_url: https://www.dataaccess.com/webservicesserver/numberconversion.wso
+    transport:
+      proxy_url: ""
+      ssl_force_common_name_check: false
+      ssl_insecure_skip_verify: false
+  response_processors:
+  - name: header_injector
+  - name: response_body_transform
+  strip_auth_data: false
+  tags:
+  - edge
+  use_basic_auth: false
+  use_go_plugin_auth: false
+  use_keyless: true
+  use_mutual_tls_auth: false
+  use_oauth2: false
+  use_standard_auth: false
+  version_data:
+    default_version: 1.0.0
+    not_versioned: false
+    versions:
+      1.0.0:
+        expires: ""
+        extended_paths:
+          track_endpoints:
+          - method: POST
+            path: NumberConversion/NumberToWords
+          - method: POST
+            path: /NumberToDollars
+          transform:
+          - method: POST
+            path: /NumberToDollars
+            template_data:
+              enable_session: false
+              input_type: json
+              template_mode: blob
+              template_source: PHNvYXBlbnY6RW52ZWxvcGUgeG1sbnM6c29hcGVudj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOndlYj0iaHR0cDovL3d3dy5kYXRhYWNjZXNzLmNvbS93ZWJzZXJ2aWNlc3NlcnZlci8iPgogICA8c29hcGVudjpIZWFkZXIvPgogICA8c29hcGVudjpCb2R5PgogICAgICA8d2ViOk51bWJlclRvRG9sbGFycz4KICAgICAgICAgPHdlYjpkTnVtPnt7Lm51bWJlclRvQ29udmVydH19PC93ZWI6ZE51bT4KICAgICAgPC93ZWI6TnVtYmVyVG9Eb2xsYXJzPgogICA8L3NvYXBlbnY6Qm9keT4KPC9zb2FwZW52OkVudmVsb3BlPgo=
+          transform_headers:
+          - act_on: false
+            add_headers:
+              content-type: text/xml
+            delete_headers: []
+            method: POST
+            path: /NumberToDollars
+          transform_response:
+          - method: POST
+            path: /NumberToDollars
+            template_data:
+              enable_session: false
+              input_type: xml
+              template_mode: blob
+              template_source: ewogICAgImNvbnZlcnRlZE51bWJlciI6ICJ7ey5FbnZlbG9wZS5Cb2R5Lk51bWJlclRvRG9sbGFyc1Jlc3BvbnNlLk51bWJlclRvRG9sbGFyc1Jlc3VsdH19Igp9Cg==
+          transform_response_headers:
+          - act_on: false
+            add_headers:
+              content-type: application/json
+            delete_headers: []
+            method: POST
+            path: /NumberToDollars
+          url_rewrites:
+          - match_pattern: NumberConversion/NumberToWords
+            method: POST
+            path: NumberConversion/NumberToWords
+            rewrite_to: https://www.dataaccess.com/webservicesserver/numberconversion.wso
+          - match_pattern: NumberConversion/NumberToDollars
+            method: POST
+            path: /NumberToDollars
+            rewrite_to: https://www.dataaccess.com/webservicesserver/numberconversion.wso
+        ignore_endpoint_case: false
+        name: 1.0.0
+        override_target: ""
+        paths: {}
+        use_extended_paths: true

@@ -1,0 +1,361 @@
+apiVersion: tyk.tyk.io/v1alpha1
+kind: ApiDefinition
+metadata:
+  name: versioning-example
+spec:
+  CORS:
+    allow_credentials: false
+    debug: false
+    enable: false
+    max_age: 24
+    options_passthrough: false
+  active: true
+  auth:
+    auth_header_name: Authorization
+    cookie_name: ""
+    param_name: ""
+    signature:
+      algorithm: ""
+      allowed_clock_skew: 0
+      error_code: 0
+      error_message: ""
+      header: ""
+      secret: ""
+    use_certificate: false
+    use_cookie: false
+    use_param: false
+    validate_signature: false
+  auth_configs:
+    authToken:
+      auth_header_name: Authorization
+      cookie_name: ""
+      param_name: ""
+      signature:
+        algorithm: ""
+        allowed_clock_skew: 0
+        error_code: 0
+        error_message: ""
+        header: ""
+        secret: ""
+      use_certificate: false
+      use_cookie: false
+      use_param: false
+      validate_signature: false
+    jwt:
+      auth_header_name: Authorization
+      cookie_name: ""
+      param_name: ""
+      signature:
+        algorithm: ""
+        allowed_clock_skew: 0
+        error_code: 0
+        error_message: ""
+        header: ""
+        secret: ""
+      use_certificate: false
+      use_cookie: false
+      use_param: false
+      validate_signature: false
+  cache_options:
+    cache_all_safe_requests: false
+    cache_control_ttl_header: ""
+    cache_response_codes:
+    - 200
+    cache_timeout: 5
+    enable_cache: true
+    enable_upstream_cache_control: false
+  config_data:
+    k8sName: versioning-example
+  custom_middleware:
+    auth_check:
+      name: ""
+      path: ""
+      raw_body_only: false
+      require_session: false
+    driver: ""
+    id_extractor:
+      extract_from: ""
+      extract_with: ""
+      extractor_config: {}
+  custom_middleware_bundle: ""
+  definition:
+    key: x-api-version
+    location: header
+    strip_path: false
+  disable_quota: false
+  disable_rate_limit: false
+  do_not_track: false
+  domain: ""
+  enable_context_vars: true
+  enable_coprocess_auth: false
+  enable_detailed_recording: false
+  enable_ip_blacklisting: false
+  enable_ip_whitelisting: false
+  enable_jwt: false
+  enable_proxy_protocol: false
+  global_rate_limit:
+    per: 0
+    rate: 0
+  graphql:
+    enabled: false
+    engine:
+      data_sources: []
+      field_configs: []
+    execution_mode: ""
+    playground:
+      enabled: false
+      path: ""
+    proxy:
+      auth_headers: {}
+    schema: ""
+    subgraph:
+      sdl: ""
+    supergraph:
+      disable_query_batching: false
+      merged_sdl: ""
+  id: 5ead711f575961000181867a
+  internal: false
+  jwt_client_base_field: ""
+  jwt_identity_base_field: ""
+  jwt_policy_field_name: ""
+  jwt_scope_claim_name: ""
+  jwt_signing_method: ""
+  jwt_skip_kid: false
+  jwt_source: ""
+  listen_port: 0
+  name: Versioned API
+  oauth_meta:
+    allowed_access_types: []
+    allowed_authorize_types: []
+    auth_login_redirect: ""
+  org_id: 657017b62ccb2000018eb448
+  protocol: ""
+  proxy:
+    check_host_against_uptime_tests: false
+    disable_strip_slash: false
+    enable_load_balancing: false
+    listen_path: /versioned-api/
+    preserve_host_header: false
+    service_discovery:
+      cache_timeout: 0
+      data_path: ""
+      endpoint_returns_list: false
+      parent_data_path: ""
+      port_data_path: ""
+      query_endpoint: ""
+      target_path: ""
+      use_discovery_service: false
+      use_nested_query: false
+      use_target_list: false
+    strip_listen_path: true
+    target_url: http://httpbin.org
+    transport:
+      proxy_url: ""
+      ssl_force_common_name_check: false
+      ssl_insecure_skip_verify: false
+  strip_auth_data: false
+  tags:
+  - edge
+  use_basic_auth: false
+  use_go_plugin_auth: false
+  use_keyless: true
+  use_mutual_tls_auth: false
+  use_oauth2: false
+  use_standard_auth: false
+  version_data:
+    default_version: Default
+    not_versioned: false
+    versions:
+      "2":
+        expires: ""
+        extended_paths: {}
+        ignore_endpoint_case: false
+        name: "2"
+        override_target: ""
+        paths: {}
+        use_extended_paths: true
+      Default:
+        expires: ""
+        extended_paths:
+          black_list:
+          - ignore_case: false
+            method_actions:
+              GET:
+                action: no_action
+                code: 200
+                data: ""
+                headers: {}
+            path: /anything/blacklist
+          cache:
+          - /cache-slow-endpoint
+          - /uuid
+          circuit_breakers:
+          - disable_half_open_state: false
+            method: GET
+            path: status/500
+            return_to_service_after: 3
+            samples: 4
+            threshold_percent: "0.5"
+          hard_timeouts:
+          - method: GET
+            path: /delay/{time}
+            timeout: 4
+          ignored:
+          - ignore_case: false
+            method_actions:
+              GET:
+                action: reply
+                code: 200
+                data: |-
+                  {
+                   "mock": "response"
+                  }
+                headers:
+                  mock: response
+            path: anything/mock
+          method_transforms:
+          - method: PUT
+            path: /anything/method-transform
+            to_method: POST
+          size_limits:
+          - method: POST
+            path: /anything/request-size-limit
+            size_limit: 9
+          track_endpoints:
+          - method: GET
+            path: /anything/track-endpoint
+          transform:
+          - method: POST
+            path: /anything/body-transform
+            template_data:
+              enable_session: false
+              input_type: xml
+              template_mode: blob
+              template_source: ewp7e3JhbmdlICR4LCAkcyA6PSAuc2VydmVycy5zZXJ2ZXJ9fSAgICAie3skcy5zZXJ2ZXJOYW1lfX0iOiAie3skcy5zZXJ2ZXJJUH19Int7aWYgbm90ICR4fX0se3tlbmR9fQp7e2VuZH19fQ==
+          transform_headers:
+          - act_on: false
+            add_headers:
+              Context-Variable-Header-Cat: $tyk_context.headers_Cat
+              Context-Variable-Path: $tyk_context.path
+              Context-Variable-Path-Parts: $tyk_context.path_parts
+              Context-Variable-Remote-Address: $tyk_context.remote_addr
+              Context-Variable-Request-Data: $tyk_context.request_data
+            delete_headers: []
+            method: POST
+            path: /anything/context-variables
+          - act_on: false
+            add_headers:
+              new-header: new-header-value
+            delete_headers:
+            - Delete-Header
+            method: GET
+            path: /anything/modify-headers
+          url_rewrites:
+          - match_pattern: /anything/url-rewrite-trigger-payload
+            method: POST
+            path: /anything/url-rewrite-trigger-payload
+            rewrite_to: /anything/url-rewrite-triggers/default-rewrite
+            triggers:
+            - "on": all
+              options:
+                payload_matches:
+                  match_rx: \b[a-z0-9\.\+\-]+@[a-z0-9\-]+(?:\.[a-z0-9\-]+)+\b
+                  reverse: false
+              rewrite_to: /anything/url-rewrite-trigger-payload?personal-email=$tyk_context.trigger-0-payload-0&business-email=$tyk_context.trigger-0-payload-1
+          - match_pattern: /anything/url-rewrite
+            method: GET
+            path: /anything/url-rewrite
+            rewrite_to: /anything/default-rewrite
+            triggers:
+            - "on": all
+              options:
+                payload_matches:
+                  match_rx: ""
+                  reverse: false
+                query_val_matches:
+                  query:
+                    match_rx: rewrite
+                    reverse: false
+              rewrite_to: /anything/rewrite-query
+            - "on": all
+              options:
+                header_matches:
+                  Header:
+                    match_rx: rewrite
+                    reverse: false
+                payload_matches:
+                  match_rx: ""
+                  reverse: false
+              rewrite_to: /anything/rewrite-header
+          - match_pattern: /cache-slow-endpoint
+            method: GET
+            path: /cache-slow-endpoint
+            rewrite_to: /delay/3
+          - match_pattern: anything/looping
+            method: GET
+            path: anything/looping
+            rewrite_to: tyk://727dad853a8a45f64ab981154d1ffdad/get
+          validate_json:
+          - disabled: false
+            error_response_code: 422
+            method: POST
+            path: anything/validate-json
+            schema:
+              properties:
+                age:
+                  description: Age in years
+                  minimum: 0
+                  type: integer
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+              required:
+              - firstName
+              - lastName
+              title: Person
+              type: object
+          virtual:
+          - function_source_type: blob
+            function_source_uri: ZnVuY3Rpb24gdmlydHVhbEVuZHBvaW50RGVtb25zdHJhdGlvbkZ1bmN0aW9uKHJlcXVlc3QsIHNlc3Npb24sIGNvbmZpZykgewogIHZhciByZXNwb25zZU9iamVjdCA9IHsgCiAgICBCb2R5OiAiVmlydHVhbCBlbmRwb2ludCByZXNwb25zZSBib2R5IiwgCiAgICBDb2RlOiAyMDAgCiAgfQogIHJldHVybiBUeWtKc1Jlc3BvbnNlKHJlc3BvbnNlT2JqZWN0LCBzZXNzaW9uLm1ldGFfZGF0YSkKfQ==
+            method: GET
+            path: /anything/virtual-endpoint
+            proxy_on_error: false
+            response_function_name: virtualEndpointDemonstrationFunction
+            use_session: false
+        global_headers:
+          global-add: global-value
+        global_headers_remove:
+        - global-delete
+        ignore_endpoint_case: false
+        name: Default
+        override_target: ""
+        paths: {}
+        use_extended_paths: true
+      expired:
+        expires: 2020-04-15 09:22
+        extended_paths: {}
+        ignore_endpoint_case: false
+        name: expired
+        override_target: ""
+        paths: {}
+        use_extended_paths: true
+      whitelist:
+        expires: ""
+        extended_paths:
+          white_list:
+          - ignore_case: false
+            method_actions:
+              GET:
+                action: no_action
+                code: 200
+                data: ""
+                headers: {}
+            path: /anything/whitelist$
+        ignore_endpoint_case: false
+        name: whitelist
+        override_target: ""
+        paths: {}
+        use_extended_paths: true
+
+
